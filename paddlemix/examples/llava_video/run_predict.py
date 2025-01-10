@@ -68,7 +68,7 @@ def load_video(video_path, max_frames_num, fps=1, force_sample=False):
 
 
 def main():
-    pretrained = "/home/zxy/.cache/huggingface/hub/models--lmms-lab--LLaVA-Video-7B-Qwen2/snapshots/013210b3aff822f1558b166d39c1046dd109520f_pd"
+    pretrained = "/home/zxy/.cache/huggingface/hub/models--lmms-lab--LLaVA-Video-7B-Qwen2/snapshots/013210b3aff822f1558b166d39c1046dd109520f/"
     # pretrained = "lmms-lab/LLaVA-Video-7B-Qwen2"
     model_name = "llava_qwen"
     device = "cuda:0,1,2,3,4,5,6,7"
@@ -81,7 +81,7 @@ def main():
     # )
     # after refactoring:
     model = LlavaQwenForCausalLM.from_pretrained(
-        pretrained, dtype=paddle.bfloat16
+        pretrained, dtype=paddle.bfloat16, convert_from_torch=True
     ).eval()
     tokenizer = Qwen2Tokenizer.from_pretrained(pretrained)
     image_processor = SigLipImageProcessor()
